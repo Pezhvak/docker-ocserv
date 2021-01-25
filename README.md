@@ -55,26 +55,49 @@ Remove the specified user to the password file (Password will be asked)
 docker exec -it ocserv ocuser create <username>
 ```
 
-### Delete a user
+### Delete a User
 
 Remove the specified user from the password file:
 ```BASH
 docker exec ocserv ocuser delete <username>
 ```
 
-### Lock a user
+### Lock a User
 
 Prevent the specified user from logging in:
 ```BASH
 docker exec ocserv ocuser lock <username>
 ```
 
-### Unlock a user
+### Unlock a User
 
 Re-enable login for the specified user
 ```BASH
 docker exec ocserv ocuser unlock <username>
 ```
+
+## Connect To Server
+
+Now that everything is set up and user is created, you can connect to server using one of the available clients or from terminal:
+
+### The Terminal Way
+Make sure you have installed `openconnect` on your machine, you can do that in MacOS using `brew install openconnect`.
+
+```BASH
+echo "<PASSWORD>" | sudo openconnect <DOMAIN>:<PORT> -u <USERNAME> --passwd-on-stdin
+```
+you can also create an alias in your `~/.bash_profile` (or `~/.zshrc` if you're using zsh) for easier access:
+
+```BASH
+alias vpn:oc="echo "<PASSWORD>" | sudo openconnect <DOMAIN>:<PORT> -u <USERNAME> --passwd-on-stdin"
+```
+
+### Using Applications
+- [Android](https://play.google.com/store/apps/details?id=com.cisco.anyconnect.vpn.android.avf&hl=en&gl=US)
+- [iOS](https://apps.apple.com/us/app/cisco-anyconnect/id1135064690)
+- [MacOS](https://www.cisco.com/c/en/us/support/docs/smb/routers/cisco-rv-series-small-business-routers/smb5642-install-cisco-anyconnect-secure-mobility-client-on-a-mac-com-rev1.html)
+- [Windows](https://www.cisco.com/c/en/us/support/docs/smb/routers/cisco-rv-series-small-business-routers/smb5686-install-cisco-anyconnect-secure-mobility-client-on-a-windows.html)
+- [Ubuntu](https://www.cisco.com/c/en/us/support/docs/smb/routers/cisco-rv-series-small-business-routers/Kmgmt-785-AnyConnect-Linux-Ubuntu.html)
 
 # Build Your Own Image
 If you want to change the default configurations, you will have to build the image yourself, just clone the repo and change the files you need.

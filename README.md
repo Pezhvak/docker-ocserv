@@ -66,4 +66,4 @@ cd docker-ocserv
 docker build -t myocserv:latest .
 ```
 
-3- Follow the steps of [Using Built Image](#using-built-image)
+3- Follow the steps of [Using Built Image](#using-built-image) (Change `pezhvak/ocserv` to your own image name)

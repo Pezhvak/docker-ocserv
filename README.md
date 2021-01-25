@@ -100,7 +100,7 @@ echo "<PASSWORD>" | sudo openconnect <DOMAIN>:<PORT> -u <USERNAME> --passwd-on-s
 You can also create an alias in your `~/.bash_profile` (or `~/.zshrc` if you're using zsh) for easier access:
 
 ```BASH
-alias vpn:oc="echo "<PASSWORD>" | sudo openconnect <DOMAIN>:<PORT> -u <USERNAME> --passwd-on-stdin"
+alias vpn:oc="echo <PASSWORD> | sudo openconnect <DOMAIN>:<PORT> -u <USERNAME> --passwd-on-stdin"
 ```
 
 ### Using Applications

@@ -1,0 +1,16 @@
+version: '3.0'
+services:
+  ocserv:
+    image: your_repo/ocserv
+    restart: always
+    container_name: ocserv
+    privileged: true
+    hostname: www.example.com
+    ports:
+      - 1342:443/udp
+      - 1342:443
+    volumes:
+      - "./data/ocserv:/etc/ocserv"
+    environment:
+      - VIRTUAL_HOST=www.example.com
+      - LETSENCRYPT_HOST=www.example.com

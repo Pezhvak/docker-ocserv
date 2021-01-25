@@ -5,11 +5,11 @@ services:
     restart: always
     container_name: ocserv
     privileged: true
-    hostname: s1.imvx.org
+    hostname: <domain>
     ports:
       - 1342:443/udp
       - 1342:443
     volumes:
       - "./data:/etc/ocserv/data"
-      - ./certs/live/s1.imvx.org/fullchain.pem:/etc/ocserv/server-cert.pem
-      - ./certs/live/s1.imvx.org/privkey.pem:/etc/ocserv/server-key.pem
+      - ./certs/live/<domain>/fullchain.pem:/etc/ocserv/server-cert.pem
+      - ./certs/live/<domain>/privkey.pem:/etc/ocserv/server-key.pem

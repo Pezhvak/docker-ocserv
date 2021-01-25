@@ -63,7 +63,7 @@ cd docker-ocserv
 
 2- Build the image with your own settings, feel free to change `ocserv.conf` to your liking:
 ```BASH
-docker build -t myocserv:latest .
+docker build -t <image_name> .
 ```
 
 3- Follow the steps of [Using Built Image](#using-built-image) (Change `pezhvak/ocserv` to your own image name)

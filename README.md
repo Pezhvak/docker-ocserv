@@ -1,9 +1,11 @@
 # docker-ocserv
-Alpine based ocserv docker image
+Alpine based ocserv Docker image.
+
+You can either start by using the 46.1MB (16.65 MB Compressed) [pre-built image](#using-built-image) or [create your own](#build-your-own-image).
 
 
 # Using Built Image
-A pre-built image is available with the best configurations out of the box. Follow the instructions bellow to get up and running.
+A [pre-built image](https://hub.docker.com/layers/pezhvak/ocserv) is available with the best configurations out of the box. Follow the instructions bellow to get up and running.
 
 This setup includes:
 - 2 Device connections for each user (`max-same-clients`)

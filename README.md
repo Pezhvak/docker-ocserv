@@ -63,28 +63,28 @@ I have created a simple proxy shell (`ocuser`) in the image for easier interacti
 
 Remove the specified user to the password file (Password will be asked)
 ```BASH
-docker exec -it ocserv ocuser create <username>
+docker exec -it ocserv ash -c "ocuser create <username>"
 ```
 
 ### Delete a User
 
 Remove the specified user from the password file:
 ```BASH
-docker exec ocserv ocuser delete <username>
+docker exec ocserv ash -c "ocuser delete <username>"
 ```
 
 ### Lock a User
 
 Prevent the specified user from logging in:
 ```BASH
-docker exec ocserv ocuser lock <username>
+docker exec ocserv ash -c "ocuser lock <username>"
 ```
 
 ### Unlock a User
 
 Re-enable login for the specified user
 ```BASH
-docker exec ocserv ocuser unlock <username>
+docker exec ocserv ash -c "cuser unlock <username>"
 ```
 
 ## Connect To Server

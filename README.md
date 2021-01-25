@@ -45,11 +45,35 @@ docker run \
 
 Your ocserv should be up and running now, you will have to create a user to be able to connnect.
 
-## User Creation
-For each user you want to add, all you need to do is to run the following command:
+## User Management
+I have created a simple proxy shell (`ocuser`) in the image for easier interaction with `ocpasswd`.
 
+### Create a new user
+
+Remove the specified user to the password file (Password will be asked)
 ```BASH
-docker exec ocserv ocpasswd -c /etc/ocserv/ocpasswd <username>
+docker exec -it ocserv ocuser create <username>
+```
+
+### Delete a user
+
+Remove the specified user from the password file:
+```BASH
+docker exec ocserv ocuser delete <username>
+```
+
+### Lock a user
+
+Prevent the specified user from logging in:
+```BASH
+docker exec ocserv ocuser lock <username>
+```
+
+### Unlock a user
+
+Re-enable login for the specified user
+```BASH
+docker exec ocserv ocuser unlock <username>
 ```
 
 # Build Your Own Image

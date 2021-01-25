@@ -1,0 +1,11 @@
+#/bin/ash
+## Maintained by Pezhvak
+
+FLAG=""
+if [ "$1" == "create" ]; then FLAG=''; fi
+if [ "$1" == "lock" ]; then FLAG='-l'; fi
+if [ "$1" == "unlock" ]; then FLAG='-u'; fi
+if [ "$1" == "delete" ]; then FLAG='-d'; fi
+
+ocpasswd -c /etc/ocserv/ocpasswd $FLAG $2
+

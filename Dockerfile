@@ -1,13 +1,9 @@
 From alpine:latest
 MAINTAINER Pezhvak
 
-ARG ORGANIZATION="My Corp"
-ARG DOMAIN="example.com"
-ARG PORT=1243
+RUN apk update && apk add musl-dev iptables gnutls-dev gnutls-utils readline-dev libnl3-dev lz4-dev libseccomp-dev libev-dev
 
-RUN apk update && apk add musl-dev iptables gnutls-dev readline-dev libnl3-dev lz4-dev libseccomp-dev@testing
-
-RUN buildDeps="xz openssl gcc autoconf make linux-headers libev-dev"; \
+RUN buildDeps="xz openssl gcc autoconf make linux-headers"; \
 	set -x \
 	&& apk add $buildDeps \
 	&& cd \
@@ -23,24 +19,29 @@ RUN buildDeps="xz openssl gcc autoconf make linux-headers libev-dev"; \
 	&& ./configure \
 	&& make -j"$(nproc)" \
 	&& make install \
-	&& mkdir -p /etc/ocserv \
+	&& mkdir -p /etc/ocserv/data \
 	&& cd \
 	&& rm -rf ./$OC_FILE \
 	&& apk del --purge $buildDeps
 
+COPY ocserv.conf /etc/ocserv/ocserv.conf
+RUN chmod 777 /etc/ocserv/ocserv.conf
 COPY cn-no-route.txt /tmp/
 RUN set -x \
-	&& sed -i "s/tcp-port = 443/tcp-port = ${PORT}/" /etc/ocserv/ocserv.conf \
-        && sed -i "s/udp-port = 443/udp-port = ${PORT}/" /etc/ocserv/ocserv.conf \
         && sed -i 's/^no-route/#no-route/' /etc/ocserv/ocserv.conf \        
         && cat /tmp/cn-no-route.txt >> /etc/ocserv/ocserv.conf \
-        && rm -fr /tmp/cn-no-route.txt
-        && touch /etc/ocserv/ocpaswd
+        && rm -rf /tmp/cn-no-route.txt \
+        && touch /etc/ocserv/data/ocpaswd
 
 WORKDIR /etc/ocserv
 
-COPY docker-entrypoint.sh /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
+COPY docker-entrypoint.sh /root/entrypoint.sh
+COPY ocuser /usr/local/bin/ocuser
+RUN chmod 777 ~/entrypoint.sh
+RUN chmod 777 /usr/local/bin/ocuser
 
-EXPOSE $PORT
+RUN ls /etc/ocserv > /root/list
+ENTRYPOINT ["/root/entrypoint.sh"]
+
+EXPOSE 443
 CMD ["ocserv", "-c", "/etc/ocserv/ocserv.conf", "-f"]

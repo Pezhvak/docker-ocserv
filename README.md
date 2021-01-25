@@ -11,7 +11,7 @@ an SSL certificate, It's up to you how you would like to create it, perhaps you 
 in case you don't, use the following command to generate one:
 
 ***Note: You need to have a domain pointing to your server IP address and ports 80 and 443 available to be listened by the container for
-letsencrypt verification***
+letsencrypt ACME challenge verification***
 
 ```BASH
 sudo docker run -it --rm --name certbot -p 80:80 -p 443:443 \
@@ -66,4 +66,4 @@ cd docker-ocserv
 docker build -t myocserv:latest .
 ```
 
-3- Follow the steps of [Using Built Image](#Using-Built-Image)
+3- Follow the steps of [Using Built Image](#using-built-image)

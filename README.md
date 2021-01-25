@@ -28,7 +28,7 @@ I highly recommend you to use docker-compose for running your container, feel fr
 
 ```BASH
 wget https://raw.githubusercontent.com/Pezhvak/docker-ocserv/develop/docker-compose.yml
-# Make sure to update the cert paths in volumes section of the docker-compose.yml
+# IMPORTANT: Make sure you have updated the cert paths in volumes section of the docker-compose.yml before running it.
 docker-compose up -d
 ```
 

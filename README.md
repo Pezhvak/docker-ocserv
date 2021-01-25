@@ -16,7 +16,7 @@ letsencrypt verification***
 ```BASH
 sudo docker run -it --rm --name certbot -p 80:80 -p 443:443 \
     -v $(pwd)/certs:/etc/letsencrypt certbot/certbot \
-    certonly --standalone -m me@example.com -d example.com -n --agree-tos
+    certonly --standalone -m <email> -d <domain> -n --agree-tos
 ```
 
 ## STEP 2: Running Your Container
@@ -38,8 +38,8 @@ docker run \
     --restart=always \
     -p 1342:443 \
     -v $(pwd)/data/ocserv:/etc/ocserv/data \
-    -v $(pwd)/certs/cert.pem:/etc/ocserv/server-cert.pem \
-    -v $(pwd)/certs/key.pem:/etc/ocserv/server-key.pem \
+    -v $(pwd)/certs/live/<domain>/fullchain.pem:/etc/ocserv/server-cert.pem \
+    -v $(pwd)/certs/live/<domain>/privkey.pem:/etc/ocserv/server-key.pem \
     pezhvak/ocserv 
 ```
 

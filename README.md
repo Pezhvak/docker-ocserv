@@ -5,13 +5,23 @@ Alpine based ocserv docker image
 # Using Built Image
 A pre-built image is available with the best configurations out of the box. Follow the instructions bellow to get up and running.
 
+This setup includes:
+- 2 Device connections for each user (`max-same-clients`)
+- Up to 16 clients (`max-clients`)
+- 10.10.10.0/24 as the internal IP pool
+- Listens on port 1342 (can be changed by altering port mappings when you run the container)
+- Tunnels DNS to the server (`tunnel-all-dns=true`)
+- No-Route list configured by [CNMan/ocserv-cn-no-route](https://github.com/CNMan/ocserv-cn-no-route)
+
+***Note:*** All limits can be increased or set to be unlimited by [building your own image](#build-your-own-image)
+
 ## STEP 1: Generate SSL Certificate
 No matter what, if you wan to build the image yourself, run the prebuilt one with docker or with docker-compose, in all cases you will need
 an SSL certificate, It's up to you how you would like to create it, perhaps you already have some kind of setup for SSL generation on your server,
 in case you don't, use the following command to generate one:
 
-***Note: You need to have a domain pointing to your server IP address and ports 80 and 443 available to be listened by the container for
-letsencrypt ACME challenge verification***
+***Note:*** You need to have a domain pointing to your server IP address and ports 80 and 443 available to be listened by the container for
+letsencrypt ACME challenge verification
 
 ```BASH
 sudo docker run -it --rm --name certbot -p 80:80 -p 443:443 \

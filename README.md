@@ -13,7 +13,7 @@ This setup includes:
 - Tunnels DNS to the server (`tunnel-all-dns=true`)
 - No-Route list configured by [CNMan/ocserv-cn-no-route](https://github.com/CNMan/ocserv-cn-no-route)
 
-***Note:*** All limits can be increased or set to be unlimited by [building your own image](#build-your-own-image)
+***Note:*** All limits can be increased or set to be unlimited by [building your own image](#build-your-own-image).
 
 ## STEP 1: Generate SSL Certificate
 No matter what, if you wan to build the image yourself, run the prebuilt one with docker or with docker-compose, in all cases you will need
@@ -21,7 +21,7 @@ an SSL certificate, It's up to you how you would like to create it, perhaps you 
 in case you don't, use the following command to generate one:
 
 ***Note:*** You need to have a domain pointing to your server IP address and ports 80 and 443 available to be listened by the container for
-letsencrypt ACME challenge verification
+letsencrypt ACME challenge verification.
 
 ```BASH
 sudo docker run -it --rm --name certbot -p 80:80 -p 443:443 \
@@ -97,7 +97,7 @@ Make sure you have installed `openconnect` on your machine, you can do that in M
 ```BASH
 echo "<PASSWORD>" | sudo openconnect <DOMAIN>:<PORT> -u <USERNAME> --passwd-on-stdin
 ```
-you can also create an alias in your `~/.bash_profile` (or `~/.zshrc` if you're using zsh) for easier access:
+You can also create an alias in your `~/.bash_profile` (or `~/.zshrc` if you're using zsh) for easier access:
 
 ```BASH
 alias vpn:oc="echo "<PASSWORD>" | sudo openconnect <DOMAIN>:<PORT> -u <USERNAME> --passwd-on-stdin"

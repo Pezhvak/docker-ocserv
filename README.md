@@ -13,7 +13,7 @@ in case you don't, use the following command to generate one:
 ***Note: You need to have a domain pointing to your server IP address and ports 80 and 443 available to be listened by the container for
 letsencrypt verification***
 
-```
+```BASH
 sudo docker run -it --rm --name certbot -p 80:80 -p 443:443 \
     -v $(pwd)/certs:/etc/letsencrypt certbot/certbot \
     certonly --standalone -m me@example.com -d example.com -n --agree-tos
@@ -37,9 +37,9 @@ docker run \
     --name ocserv \
     --restart=always \
     -p 1342:443 \
-    -v ./data/ocserv:/etc/ocserv/data \
-    -v ./certificates/cert.pem:/etc/ocserv/server-cert.pem \
-    -v ./certificates/key.pem:/etc/ocserv/server-key.pem \
+    -v $(pwd)/data/ocserv:/etc/ocserv/data \
+    -v $(pwd)/certs/cert.pem:/etc/ocserv/server-cert.pem \
+    -v $(pwd)/certs/key.pem:/etc/ocserv/server-key.pem \
     pezhvak/ocserv 
 ```
 
@@ -66,14 +66,4 @@ cd docker-ocserv
 docker build -t myocserv:latest .
 ```
 
-3- Generate SSL certificate for your domain (you need to have a domain):
-```BASH
-docker run --rm \
-    -p 80:80 \
-    -p 443:443 \
-    --name letsencrypt \
-    -v $(PWD)/certificates:/etc/letsencrypt \
-    -e "LETSENCRYPT_EMAIL=dummy@example.com" \
-    -e "LETSENCRYPT_DOMAIN1=www.example.com" \
-    blacklabelops/letsencrypt install
-```
+3- Follow the steps of [Using Built Image](#Using-Built-Image)

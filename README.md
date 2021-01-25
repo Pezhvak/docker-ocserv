@@ -78,7 +78,7 @@ docker exec ocserv ocuser unlock <username>
 
 ## Connect To Server
 
-Now that everything is set up and user is created, you can connect to server using terminal of one of the available applications:
+Now that everything is set up and user is created, you can connect to server using terminal or one of the available applications:
 
 ### The Terminal Way
 Make sure you have installed `openconnect` on your machine, you can do that in MacOS using `brew install openconnect`.

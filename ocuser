@@ -7,5 +7,5 @@ if [ "$1" == "lock" ]; then FLAG='-l'; fi
 if [ "$1" == "unlock" ]; then FLAG='-u'; fi
 if [ "$1" == "delete" ]; then FLAG='-d'; fi
 
-ocpasswd -c /etc/ocserv/ocpasswd $FLAG $2
+ocpasswd -c /etc/ocserv/data/ocpasswd $FLAG $2
 

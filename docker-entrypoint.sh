@@ -76,4 +76,5 @@ chmod 600 /dev/net/tun
 
 
 # Run OpennConnect Server
-exec "$@"
+exec "$@";
+

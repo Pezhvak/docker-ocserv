@@ -53,7 +53,6 @@ Follow the instructions bellow to get up and running.
 - 10.10.10.0/24 as the internal IP pool
 - Listens on port 1342 (can be changed by altering port mappings when you run the container)
 - Tunnels DNS to the server (`tunnel-all-dns=true`)
-- No-Route list configured by [CNMan/ocserv-cn-no-route](https://github.com/CNMan/ocserv-cn-no-route)
 
 ***Note:*** All limits can be increased or set to be unlimited in `ocserv.conf`
 by [building your own image](#build-your-own-image).

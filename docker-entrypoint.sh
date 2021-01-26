@@ -53,13 +53,13 @@ if [ ! -f /etc/ocserv/server-key.pem ] || [ ! -f /etc/ocserv/server-cert.pem ]; 
 
 	# Create a test user
 	if [ -z "$NO_TEST_USER" ] && [ ! -f /etc/ocserv/ocpasswd ]; then
-		echo "Create test user 'test' with password 'test'"
-		echo 'test:*:$5$DktJBFKobxCFd7wN$sn.bVw8ytyAaNamO.CvgBvkzDiFR6DaHdUzcif52KK7' > /etc/ocserv/ocpasswd
+		echo "Creating test user 'test' with password 'test'"
+		echo 'test:*:$5$DktJBFKobxCFd7wN$sn.bVw8ytyAaNamO.CvgBvkzDiFR6DaHdUzcif52KK7' > /etc/ocserv/data/ocpasswd
 	fi
 fi
 
 # Open ipv4 ip forward
-#sysctl -w net.ipv4.ip_forward=1
+sysctl -w net.ipv4.ip_forward=1
 
 # Enable NAT forwarding
 iptables -t nat -A POSTROUTING -j MASQUERADE

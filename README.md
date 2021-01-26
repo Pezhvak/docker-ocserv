@@ -3,7 +3,7 @@
 # docker-ocserv
 Alpine based ocserv Docker image
 
-[![Open Source](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://opensource.org/) [![Active](http://img.shields.io/badge/Status-Active-green.svg)](https://tterb.github.io)
+[![Open Source](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://opensource.org/) [![Active](http://img.shields.io/badge/Status-Active-green.svg)](https://github.com/Pezhvak/docker-ocserv)
 </div>
 
 # Installation
@@ -100,7 +100,7 @@ docker exec ocserv ash -c "ocuser lock <username>"
 
 Re-enable login for the specified user
 ```BASH
-docker exec ocserv ash -c "cuser unlock <username>"
+docker exec ocserv ash -c "ocuser unlock <username>"
 ```
 
 ## Connecting To Server

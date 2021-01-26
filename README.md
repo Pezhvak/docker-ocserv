@@ -22,7 +22,7 @@ or [build your own](#build-your-own-image) for more customization.
 - [Installation](#installation)
     - [Using Built Image](#using-built-image)
         - [Versioning](#versioning)
-        - [Generate SSL Certificate](#step-1-generate-ssl-certificate)
+        - [Generating SSL Certificate](#step-1-generating-ssl-certificate)
         - [Running Container](#step-2-running-your-container)
             - [Using Docker Compose](#option-1-docker-compose-recommended)
             - [Using Docker Run](#option-2-docker-run-command)
@@ -67,7 +67,7 @@ are also available if you want to make sure no breaking changes enters your setu
 However, if you like to get the cutting edge features you can always use the `next` tag
 which represents the latest commit in the `develop` branch.
 
-### STEP 1: Generate SSL Certificate
+### STEP 1: Generating SSL Certificate
 
 No matter what, if you want to build the image yourself, run the pre-built one with `docker run` or
 with `docker-compose`, in all cases you will need an SSL certificate, It's up to you how you would like to generate it,

@@ -35,6 +35,8 @@ or [build your own](#build-your-own-image) for more customization.
         - [Locking a user](#lock-a-user)
         - [Unlocking a user](#unlock-a-user)
     - [Connecting To Server](#connecting-to-server)
+        - [Using Terminal](#using-terminal)
+        - [Using Clients](#using-clients)
 - [References](#references)
 
 # Installation
@@ -101,7 +103,8 @@ port by editing `docker-compose.yml`.
 
 ```BASH
 wget https://raw.githubusercontent.com/Pezhvak/docker-ocserv/develop/docker-compose.yml
-# IMPORTANT: Make sure you have updated the cert paths in volumes section of the docker-compose.yml before running it.
+# IMPORTANT: Make sure you have updated the cert paths in volumes section 
+# of the docker-compose.yml before running it.
 docker-compose up -d
 ```
 
@@ -212,7 +215,7 @@ docker exec ocserv ash -c "ocuser unlock <username>"
 Now that everything is set up and user is created, you can connect to server using terminal or one of the available
 applications:
 
-### The Terminal Way
+### Using Terminal
 
 Make sure you have installed `openconnect` on your machine, you can do that in MacOS using `brew install openconnect`.
 

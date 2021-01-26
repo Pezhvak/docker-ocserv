@@ -12,7 +12,7 @@
 
 ## About
 
-Lightweight Alpine based ocserv Docker image.
+A lightweight Alpine based ocserv Docker image.
 
 You can either start by using the [pre-built image](#using-built-image)
 or [build your own](#build-your-own-image) for more customization.

@@ -37,7 +37,7 @@ a warning message about certificate not being trusted (due to being self-signed)
 ## STEP 2: Running Your Container
 Now that you have your certificate generated (or not), you have to run run the container somehow.
 
-***NOTE: *** If you haven't generated certificate in the previous step, remove volume mountings to cert paths in your choosen method. as stated previously
+***NOTE:*** If you haven't generated certificate in the previous step, remove volume mountings to cert paths in your choosen method. as stated previously
 a self-signed certificate will be generated automatically with the downside of untrusted certificate warning at the logging phase.
 
 ### OPTION 1: Docker Compose (Recommended)

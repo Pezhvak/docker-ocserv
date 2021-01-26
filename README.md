@@ -61,7 +61,7 @@ by [building your own image](#build-your-own-image).
 ### Versioning
 By default `docker-compose.yml` and the instructions written in this document uses the `latest`
 tag of the image which represents the latest commit in the `master` branch. beside that tagged commits
-are also available if you want to make sure no breaking changes enters your setup. checkout 
+are also available if you want to make sure no breaking changes enters your setup, for that checkout 
 [tags](https://hub.docker.com/repository/docker/pezhvak/ocserv/tags) in our docker hub repo.
 
 However, if you like to get the cutting edge features you can always use the `next` tag

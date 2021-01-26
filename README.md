@@ -1,11 +1,16 @@
-# docker-ocserv
-Alpine based ocserv Docker image.
+<div align="center">
 
+# docker-ocserv
+Alpine based ocserv Docker image
+
+[![Open Source](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://opensource.org/) [![Active](http://img.shields.io/badge/Status-Active-green.svg)](https://github.com/Pezhvak/docker-ocserv)
+</div>
+
+# Installation
 You can either start by using the 46.1MB (16.65 MB Compressed) [pre-built image](#using-built-image) or [build your own](#build-your-own-image).
 
-
-# Using Built Image
-A [pre-built image](https://hub.docker.com/layers/pezhvak/ocserv) is available with the best configurations out of the box. Follow the instructions bellow to get up and running.
+## Using Built Image
+A [pre-built image](https://hub.docker.com/layers/pezhvak/ocserv) is available with the best configurations out of the box. Follow the instructions below to get up and running.
 
 This setup includes:
 - 2 Device connections for each user (`max-same-clients=2`)
@@ -17,7 +22,7 @@ This setup includes:
 
 ***Note:*** All limits can be increased or set to be unlimited in `ocserv.conf` by [building your own image](#build-your-own-image).
 
-## STEP 1: Generate SSL Certificate
+### STEP 1: Generate SSL Certificate
 No matter what, if you want to build the image yourself, run the pre-built one with `docker run` or with `docker-compose`, in all cases you will need
 an SSL certificate, It's up to you how you would like to generate it, perhaps you already have some kind of setup for that on your server,
 in case you don't, use the following [image](https://hub.docker.com/r/certbot/certbot/) to generate one:
@@ -31,18 +36,18 @@ sudo docker run -it --rm --name certbot -p 80:80 -p 443:443 \
     certonly --standalone -m <email> -d <domain> -n --agree-tos
 ```
 
-Don't worry if you can't create one (mostly because ports 80 and 443 are not available on your server or you don't have a domain), a fallback script will generate a self-signed certificate for you inside the container. The only difference is
-a warning message about certificate not being trusted (due to being self-signed) when logging in.
+Don't worry if you can't create one (most often because ports 80 and 443 are not available on your server or you don't have a domain), a fallback script will generate a self-signed certificate for you inside the container. The only difference is
+a warning message about the certificate not being trusted (due to being self-signed) when logging in.
 
-## STEP 2: Running Your Container
-Now that you have your certificate generated (or not), you have to run run the container somehow.
+### STEP 2: Running Your Container
+Now that we are done with the certificate, you have to run the container somehow.
 
-***NOTE:*** If you haven't generated certificate in the previous step, remove volume mountings to cert paths in your choosen method. as stated previously
+***NOTE:*** If you haven't generated a certificate in the previous step, remove volume mountings to cert paths in your chosen method. as stated previously
 a self-signed certificate will be generated automatically with the downside of untrusted certificate warning at the logging phase.
 
 ### OPTION 1: Docker Compose (Recommended)
 
-I highly recommend you to use docker-compose for running your container, feel free to change the port by editing `docer-compose.yml`.
+I highly recommend using docker-compose for running your container, feel free to change the port by editing `docker-compose.yml`.
 
 ```BASH
 wget https://raw.githubusercontent.com/Pezhvak/docker-ocserv/develop/docker-compose.yml
@@ -65,7 +70,7 @@ docker run \
     pezhvak/ocserv 
 ```
 
-Your ocserv should be up and running now, you will have to create a user to be able to connnect.
+Your ocserv should be up and running now, you will have to create a user to be able to connect.
 
 ## User Management
 I have created a simple proxy shell (`ocuser`) in the image for easier interaction with `ocpasswd`.
@@ -95,10 +100,10 @@ docker exec ocserv ash -c "ocuser lock <username>"
 
 Re-enable login for the specified user
 ```BASH
-docker exec ocserv ash -c "cuser unlock <username>"
+docker exec ocserv ash -c "ocuser unlock <username>"
 ```
 
-## Connect To Server
+## Connecting To Server
 
 Now that everything is set up and user is created, you can connect to server using terminal or one of the available applications:
 
@@ -114,14 +119,15 @@ You can also create an alias in your `~/.bash_profile` (or `~/.zshrc` if you're 
 alias vpn:oc="echo <PASSWORD> | sudo openconnect <DOMAIN>:<PORT> -u <USERNAME> --passwd-on-stdin"
 ```
 
-### Using Applications
-- [Android](https://play.google.com/store/apps/details?id=com.cisco.anyconnect.vpn.android.avf&hl=en&gl=US)
+### VPN Clients
+- [Android (Cisco Anyconnect)](https://play.google.com/store/apps/details?id=com.cisco.anyconnect.vpn.android.avf)
+- [Android (Openconnect)](https://play.google.com/store/apps/details?id=com.github.digitalsoftwaresolutions.openconnect)
 - [iOS](https://apps.apple.com/us/app/cisco-anyconnect/id1135064690)
 - [MacOS](https://www.cisco.com/c/en/us/support/docs/smb/routers/cisco-rv-series-small-business-routers/smb5642-install-cisco-anyconnect-secure-mobility-client-on-a-mac-com-rev1.html)
 - [Windows](https://www.cisco.com/c/en/us/support/docs/smb/routers/cisco-rv-series-small-business-routers/smb5686-install-cisco-anyconnect-secure-mobility-client-on-a-windows.html)
 - [Ubuntu](https://www.cisco.com/c/en/us/support/docs/smb/routers/cisco-rv-series-small-business-routers/Kmgmt-785-AnyConnect-Linux-Ubuntu.html)
 
-# Build Your Own Image
+## Build Your Own Image
 If you want to change the default configurations, you will have to build the image yourself, just clone the repo and change the files you need.
 
 1- Clone the repository to your server:
@@ -137,6 +143,6 @@ docker build -t <image_name> .
 
 3- Follow the steps of [Using Built Image](#using-built-image) (Change `pezhvak/ocserv` to your own image name)
 
-# References
+### References
 - [soreana/cisco-anyconnect-server-docker](https://github.com/soreana/cisco-anyconnect-server-docker)
 - [TommyLau/docker-ocserv](https://github.com/TommyLau/docker-ocserv)

@@ -1,26 +1,26 @@
 # docker-ocserv
 Alpine based ocserv Docker image.
 
-You can either start by using the 46.1MB (16.65 MB Compressed) [pre-built image](#using-built-image) or [create your own](#build-your-own-image).
+You can either start by using the 46.1MB (16.65 MB Compressed) [pre-built image](#using-built-image) or [build your own](#build-your-own-image).
 
 
 # Using Built Image
 A [pre-built image](https://hub.docker.com/layers/pezhvak/ocserv) is available with the best configurations out of the box. Follow the instructions bellow to get up and running.
 
 This setup includes:
-- 2 Device connections for each user (`max-same-clients`)
-- Up to 16 clients (`max-clients`)
+- 2 Device connections for each user (`max-same-clients=2`)
+- Up to 16 clients (`max-clients=16`)
 - 10.10.10.0/24 as the internal IP pool
 - Listens on port 1342 (can be changed by altering port mappings when you run the container)
 - Tunnels DNS to the server (`tunnel-all-dns=true`)
 - No-Route list configured by [CNMan/ocserv-cn-no-route](https://github.com/CNMan/ocserv-cn-no-route)
 
-***Note:*** All limits can be increased or set to be unlimited by [building your own image](#build-your-own-image).
+***Note:*** All limits can be increased or set to be unlimited in `ocserv.conf` by [building your own image](#build-your-own-image).
 
 ## STEP 1: Generate SSL Certificate
-No matter what, if you wan to build the image yourself, run the prebuilt one with docker or with docker-compose, in all cases you will need
-an SSL certificate, It's up to you how you would like to create it, perhaps you already have some kind of setup for SSL generation on your server,
-in case you don't, use the following command to generate one:
+No matter what, if you want to build the image yourself, run the pre-built one with `docker run` or with `docker-compose`, in all cases you will need
+an SSL certificate, It's up to you how you would like to generate it, perhaps you already have some kind of setup for that on your server,
+in case you don't, use the following [image](https://hub.docker.com/r/certbot/certbot/) to generate one:
 
 ***Note:*** You need to have a domain pointing to your server IP address and ports 80 and 443 available to be listened by the container for
 letsencrypt ACME challenge verification.
@@ -31,11 +31,14 @@ sudo docker run -it --rm --name certbot -p 80:80 -p 443:443 \
     certonly --standalone -m <email> -d <domain> -n --agree-tos
 ```
 
-Don't worry if you can't create one, a fallback script will generate a self-signed certificate for you inside the container. The only difference is
+Don't worry if you can't create one (mostly because ports 80 and 443 are not available on your server or you don't have a domain), a fallback script will generate a self-signed certificate for you inside the container. The only difference is
 a warning message about certificate not being trusted (due to being self-signed) when logging in.
 
 ## STEP 2: Running Your Container
-Now that you have your certificate generated, you have to run run your container somehow.
+Now that you have your certificate generated (or not), you have to run run the container somehow.
+
+***NOTE: *** If you haven't generated certificate in the previous step, remove volume mountings to cert paths in your choosen method. as stated previously
+a self-signed certificate will be generated automatically with the downside of untrusted certificate warning at the logging phase.
 
 ### OPTION 1: Docker Compose (Recommended)
 
@@ -47,7 +50,10 @@ wget https://raw.githubusercontent.com/Pezhvak/docker-ocserv/develop/docker-comp
 docker-compose up -d
 ```
 
-### OPTION 2: Docker Command
+### OPTION 2: Docker Run Command
+
+If you prefer to use `docker run` all you have to do is to execute the following command:
+
 ```BASH
 docker run \
     --name ocserv \
@@ -66,7 +72,7 @@ I have created a simple proxy shell (`ocuser`) in the image for easier interacti
 
 ### Create a new user
 
-Remove the specified user to the password file (Password will be asked)
+Remove the specified user to the password file (Password of the user will be asked)
 ```BASH
 docker exec -it ocserv ash -c "ocuser create <username>"
 ```

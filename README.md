@@ -31,7 +31,7 @@ sudo docker run -it --rm --name certbot -p 80:80 -p 443:443 \
     certonly --standalone -m <email> -d <domain> -n --agree-tos
 ```
 
-Don't worry if you can't generate one, a fallback script will generate a self-signed certificate for you inside the container. the only difference is
+Don't worry if you can't create one, a fallback script will generate a self-signed certificate for you inside the container. The only difference is
 a warning message about certificate not being trusted (due to being self-signed) when logging in.
 
 ## STEP 2: Running Your Container

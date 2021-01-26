@@ -230,7 +230,7 @@ alias vpn:oc="echo <PASSWORD> | sudo openconnect <DOMAIN>:<PORT> -u <USERNAME> -
 
 ### Using Clients
 
-- [Android (Cisco Anyconnect)](https://play.google.com/store/apps/details?id=com.cisco.anyconnect.vpn.android.avf)
+- [Android (Cisco AnyConnect)](https://play.google.com/store/apps/details?id=com.cisco.anyconnect.vpn.android.avf)
 - [Android (OpenConnect)](https://play.google.com/store/apps/details?id=com.github.digitalsoftwaresolutions.openconnect)
 - [iOS](https://apps.apple.com/us/app/cisco-anyconnect/id1135064690)
 - [MacOS](https://www.cisco.com/c/en/us/support/docs/smb/routers/cisco-rv-series-small-business-routers/smb5642-install-cisco-anyconnect-secure-mobility-client-on-a-mac-com-rev1.html)

@@ -7,7 +7,7 @@ if [ ! -f /etc/ocserv/server-key.pem ] || [ ! -f /etc/ocserv/server-cert.pem ]; 
 	fi
 
 	if [ -z "$CA_ORG" ]; then
-		CA_ORG="Big Corp"
+		CA_ORG="My Organization"
 	fi
 
 	if [ -z "$CA_DAYS" ]; then
@@ -19,7 +19,7 @@ if [ ! -f /etc/ocserv/server-key.pem ] || [ ! -f /etc/ocserv/server-cert.pem ]; 
 	fi
 
 	if [ -z "$SRV_ORG" ]; then
-		SRV_ORG="MyCompany"
+		SRV_ORG="My Company"
 	fi
 
 	if [ -z "$SRV_DAYS" ]; then

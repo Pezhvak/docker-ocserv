@@ -4,6 +4,7 @@
 
 ![GitHub](https://img.shields.io/github/license/pezhvak/docker-ocserv)
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/pezhvak/ocserv/latest)
+![Docker Pulls](https://img.shields.io/docker/pulls/pezhvak/ocserv)
 ![Docker Image Version (latest semver)](https://img.shields.io/docker/v/pezhvak/ocserv)
 ![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/pezhvak/ocserv)
 ![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/pezhvak/ocserv)

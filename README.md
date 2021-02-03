@@ -29,6 +29,8 @@ or by [building your own](#build-your-own-image) for more customization.
             - [Using Docker Run](#option-2-docker-run-command)
     - [Build your own image](#build-your-own-image)
     - [Updating](#updating)
+        - [For Docker Composer Installations](#for-docker-compose-installations)
+        - [For Docker Run Installations](#for-docker-run-installations)
 - [Usage](#usage)
     - [User Management](#user-management)
         - [Creating a new user](#create-a-new-user)
@@ -59,23 +61,24 @@ Follow the instructions below to get up and running.
 by [building your own image](#build-your-own-image).
 
 ### Versioning
+
 By default `docker-compose.yml` and the instructions written in this document use the `latest`
-tag of the image which represents the latest commit in the `master` branch. Besides that, tagged commits
-are also available if you want to make sure no breaking changes enter your setup. To do so, check out
+tag of the image which represents the latest commit in the `master` branch. Besides that, tagged commits are also
+available if you want to make sure no breaking changes enter your setup. To do so, check out
 [tags](https://hub.docker.com/repository/docker/pezhvak/ocserv/tags) in our docker hub repo.
 
-However, if you would like to get the cutting edge features you can always use the `next` tag
-which represents the latest commit in the `develop` branch.
+However, if you would like to get the cutting edge features you can always use the `next` tag which represents the
+latest commit in the `develop` branch.
 
 ### STEP 1: Generating SSL Certificate
 
-In any case, if you want to build the image yourself, run the pre-built one with `docker run` or
-with `docker-compose`, in all cases you will need an SSL certificate, It's up to you how you would like to generate it,
-perhaps you already have some kind of setup for that on your server, in case you don't, use the
+In any case, if you want to build the image yourself, run the pre-built one with `docker run` or with `docker-compose`,
+in all cases you will need an SSL certificate, It's up to you how you would like to generate it, perhaps you already
+have some kind of setup for that on your server, in case you don't, use the
 following [image](https://hub.docker.com/r/certbot/certbot/) to generate one:
 
-***Note:*** You need to have a domain pointing to your server IP address and ports 80 and 443 available to be listened to
-by the container for letsencrypt ACME challenge verification.
+***Note:*** You need to have a domain pointing to your server IP address and ports 80 and 443 available to be listened
+to by the container for letsencrypt ACME challenge verification.
 
 ```BASH
 sudo docker run -it --rm --name certbot -p 80:80 -p 443:443 \
@@ -83,9 +86,9 @@ sudo docker run -it --rm --name certbot -p 80:80 -p 443:443 \
     certonly --standalone -m <email> -d <domain> -n --agree-tos
 ```
 
-If you can't create one (most often because ports 80 and 443 are not available on your server, or you don't have a domain), a
-fallback script will generate a self-signed certificate for you inside the container. The only difference is a warning
-message about the certificate not being trusted (due to being self-signed) when logging in.
+If you can't create one (most often because ports 80 and 443 are not available on your server, or you don't have a
+domain), a fallback script will generate a self-signed certificate for you inside the container. The only difference is
+a warning message about the certificate not being trusted (due to being self-signed) when logging in.
 
 ### STEP 2: Running Your Container
 
@@ -99,6 +102,7 @@ untrusted certificate warning at the logging phase.
 
 I highly recommend using docker-compose for running your container, feel free to change the port by
 editing `docer-compose.yml`.
+
 ```BASH
 wget https://raw.githubusercontent.com/Pezhvak/docker-ocserv/develop/docker-compose.yml
 # IMPORTANT: Make sure you have updated the cert paths in volumes section 
@@ -136,7 +140,8 @@ docker-compose pull
 docker-compose up -d
 ```
 
-#### For 'docker run' Installations
+#### For Docker Run Installations
+
 ```BASH
 # Pull the image from docker hub
 docker pull pezhvak/ocserv
@@ -145,14 +150,15 @@ docker restart ocserv
 ```
 
 ## Build Your Own Image
-Although it's easier to use the [pre-built image](https://hub.docker.com/r/pezhvak/ocserv), it has its own downsides. namely, the limitations described [here](#this-setup-includes).
+
+Although it's easier to use the [pre-built image](https://hub.docker.com/r/pezhvak/ocserv), it has its own downsides.
+namely, the limitations described [here](#this-setup-includes).
 
 If you want to change the default configurations, you will have to build the image yourself, just clone the repo and
 change the files you need.
 
 Configuration files are stored in the `config` directory. you can also modify
 `scripts/docker-entrypoint.sh` if needed.
-
 
 1- Clone the repository to your server:
 

@@ -59,9 +59,9 @@ Follow the instructions below to get up and running.
 by [building your own image](#build-your-own-image).
 
 ### Versioning
-By default `docker-compose.yml` and the instructions written in this document uses the `latest`
+By default `docker-compose.yml` and the instructions written in this document use the `latest`
 tag of the image which represents the latest commit in the `master` branch. Besides that, tagged commits
-are also available if you want to make sure no breaking changes enter your setup, for that checkout
+are also available if you want to make sure no breaking changes enter your setup. To do so, check out
 [tags](https://hub.docker.com/repository/docker/pezhvak/ocserv/tags) in our docker hub repo.
 
 However, if you would like to get the cutting edge features you can always use the `next` tag

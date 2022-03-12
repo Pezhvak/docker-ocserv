@@ -2,3 +2,4 @@
 ## pre-built image supports up-to 200 lines in ocserv.conf, you can change that in Dockerfile if needed
 ## fill each line with one entry, for example:
 # no-route = 1.0.0.0/255.192.0.0
+no-route = 192.168.0.0/255.255.0.0
